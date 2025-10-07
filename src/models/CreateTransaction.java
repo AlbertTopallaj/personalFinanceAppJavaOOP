@@ -14,6 +14,28 @@ public class CreateTransaction {
 
     }
 
-    CreateTransaction createTransaction = new CreateTransaction();
+    public int getAmount(){
+
+        return amount;
+
+    }
+
+    public String getDescription(){
+
+        return description;
+
+    }
+
+    public void setAmount(int amount){
+
+        this.amount = amount;
+
+    }
+
+    public void setDescription(String description){
+
+        this.description = description;
+
+    }
 
 }
