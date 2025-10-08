@@ -22,5 +22,4 @@ public class CreateTransactionCommand extends Command{
         System.out.println("Create transaction");
 
     }
-
 }
