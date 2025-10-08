@@ -1,36 +1,26 @@
 package commands;
 
-import models.CreateTransaction;
+import jdk.jshell.execution.JdiExecutionControl;
+import services.TransactionService;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
-public class CreateTransactionCommand extends CreateTransaction {
+public class CreateTransactionCommand extends Command{
 
-    public static void execute(){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Skapa en ny transaktion");
-        System.out.println("Ange belopp i SEK");
-        int amount = scanner.nextInt();
+    public CreateTransactionCommand(){
 
-        if (amount < 0){
-
-            System.out.println("Spendering identifierad");
-            LocalDate date = LocalDate.now();
-            System.out.println("Ange beskrivning till transaktionen");
-            String description = scanner.nextLine();
-        } else {
-
-            System.out.println("Inkomst identifierad");
-            LocalDate date = LocalDate.now();
-            System.out.println("Ange beskrivning till transaktionen");
-            String description = scanner.nextLine();
-        }
-
+        super("create-transaction", "Create and save a new todo");
 
     }
 
+    @Override
+    public void execute(){
+
+        System.out.println("Create transaction");
+
+    }
 
 }
