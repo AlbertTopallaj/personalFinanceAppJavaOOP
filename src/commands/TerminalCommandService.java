@@ -66,8 +66,6 @@ public class TerminalCommandService implements ICommandService{
         }
 
         System.out.println("Kommando ej hittat");
-
-
     }
 
 

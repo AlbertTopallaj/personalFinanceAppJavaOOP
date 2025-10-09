@@ -1,8 +1,12 @@
 package commands;
 
+import models.Transaction;
+
+import java.util.ArrayList;
+
 public class DeleteTransactionCommand extends Command {
 
-    public DeleteTransactionCommand(){
+    public DeleteTransactionCommand(ArrayList<Transaction> transactions){
 
         super("delete-transaction", "Remove transaction");
 

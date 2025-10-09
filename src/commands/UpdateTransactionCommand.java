@@ -1,8 +1,12 @@
 package commands;
 
+import models.Transaction;
+
+import java.util.ArrayList;
+
 public class UpdateTransactionCommand extends Command{
 
-    public UpdateTransactionCommand(){
+    public UpdateTransactionCommand(ArrayList<Transaction> transactions){
 
         super("update-transaction", "Update transaction");
 
@@ -14,6 +18,4 @@ public class UpdateTransactionCommand extends Command{
         System.out.println("Update transaction");
 
     }
-
-
 }
