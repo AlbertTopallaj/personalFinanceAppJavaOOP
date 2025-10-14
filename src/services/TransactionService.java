@@ -1,6 +1,7 @@
 package services;
 
-import commands.ICommandService;
+import commands.*;
+import models.Transaction;
 import repository.DatabaseTransactionRepository;
 import repository.FileTransactionRepository;
 import repository.ITransactionRepository;
@@ -10,25 +11,15 @@ import java.util.List;
 
 public class TransactionService {
 
-    private ITransactionRepository transactionRepository = new FileTransactionRepository();
+    public void start(){
 
-    // private ITransactionRepository transactionRepository = new DatabaseTransactionRepository();
+        ArrayList<Transaction> transactions = new ArrayList<>();
 
-    public void createTransaction(){
-
-        transactionRepository.save();
-
-    }
-
-    public void deleteTransaction(){
-
-        transactionRepository.delete();
-
-    }
-
-    public void updateTransaction(){
-
-        transactionRepository.update();
+        ICommandService commandService = new TerminalCommandService(transactions);
+        commandService.registerCommand(new CreateTransactionCommand(transactions));
+        commandService.registerCommand(new DeleteTransactionCommand(transactions));
+        commandService.registerCommand(new ExitApplicationCommand());
+        commandService.start();
 
     }
 }

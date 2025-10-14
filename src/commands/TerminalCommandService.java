@@ -1,14 +1,19 @@
 package commands;
 
+import models.Transaction;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TerminalCommandService implements ICommandService{
 
+
+    private ArrayList<Transaction> transactions;
     private final ArrayList<Command> commands;
 
-    public TerminalCommandService(){
+    public TerminalCommandService(ArrayList<Transaction> transactions){
 
+        this.transactions = transactions;
         this.commands = new ArrayList<>();
 
     }

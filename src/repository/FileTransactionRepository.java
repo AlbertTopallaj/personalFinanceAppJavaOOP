@@ -1,10 +1,17 @@
 package repository;
 
-public class FileTransactionRepository implements ITransactionRepository {
+import models.Transaction;
 
-    @Override
-    public void save() {
-        System.out.println("Save to file!");
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class FileTransactionRepository implements ITransactionRepository {
+
+    private final List<Transaction> transactions = new ArrayList<>();
+
+
+    public void save(Transaction transaction) {
+       transactions.add(transaction);
     }
 
     @Override

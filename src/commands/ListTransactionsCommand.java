@@ -1,40 +1,30 @@
 package commands;
 
+import filter.TransactionPrinter;
+import filter.ITransactionFilter;
+import interfaces.ITransactionRepository;
 import models.Transaction;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListTransactionsCommand extends Command {
 
-    private ArrayList<Transaction> transactions = new ArrayList<>();
+    private final List<Transaction> transactions;
+    private final TransactionPrinter printer;
 
-    public ListTransactionsCommand(ArrayList<Transaction> transactions){
-
-        super("list-transactions", "List all created transactions");
+    public ListTransactionsCommand(List<Transaction> transactions, TransactionPrinter printer) {
+        super("list-transactions", "List all transactions with filter");
         this.transactions = transactions;
+        this.printer = printer;
 
     }
 
     @Override
-    public void execute() {
+    public void execute(){
 
-        if (transactions.isEmpty()) {
-
-            System.out.println("Inga transaktioner har skapats ännu");
-
-        }
-
-        else {
-
-            System.out.println("Alla transaktioner: ");
-            for (Transaction transaction : transactions){
-
-                System.out.println(transaction);
-
-            }
-
-        }
-
+        printer.print(transactions);
 
     }
+
 }

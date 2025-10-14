@@ -1,19 +1,28 @@
 package models;
 
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Transaction {
 
+    private static int nextID = 1;
+    private int ID;
     private int amount;
     private String description;
-    LocalDate date;
+    private LocalDate date;
 
-    public Transaction(int amount, String description, LocalDate date){
+    public Transaction(int ID, int amount, String description, String date){
 
+        this.ID = nextID++;
         this.amount = amount;
         this.description = description;
-        this.date = date;
+        this.date = LocalDate.parse(date);
+
+    }
+
+    public int getID(){
+
+        return ID;
 
     }
 
@@ -37,7 +46,7 @@ public class Transaction {
 
     public String toString(){
 
-        return description + " (" + amount + " kr, " + date + ")";
+        return "ID: " + ID + " " + description + " (" + amount + " kr, " + date + ")";
 
     }
 
