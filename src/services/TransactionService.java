@@ -17,6 +17,7 @@ public class TransactionService {
 
         ICommandService commandService = new TerminalCommandService(transactions);
         commandService.registerCommand(new CreateTransactionCommand(transactions));
+        commandService.registerCommand(new ListTransactionsCommand(transactions));
         commandService.registerCommand(new DeleteTransactionCommand(transactions));
         commandService.registerCommand(new ExitApplicationCommand());
         commandService.start();

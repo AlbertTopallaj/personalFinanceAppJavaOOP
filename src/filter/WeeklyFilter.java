@@ -1,35 +1,29 @@
 package filter;
 
-import filter.ITransactionFilter;
-import models.Transaction;
+
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.List;
+import java.util.Date;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
-public class WeeklyFilter implements ITransactionFilter {
+public class WeeklyFilter extends DateFilter {
 
-    private final int week;
-    private final int year;
+    private int year;
+    private int week;
 
-    public WeeklyFilter(LocalDate date) {
-        WeekFields wf = WeekFields.of(Locale.getDefault());
-        this.week = date.get(wf.weekOfYear());
-        this.year = date.getYear();
+    public WeeklyFilter(int year, int week){
+
+        this.year = year;
+        this.week = week;
+
+
     }
-
     @Override
-    public List<Transaction> filter(List<Transaction> transactions) {
+    protected boolean matches(LocalDate date) {
+
         WeekFields wf = WeekFields.of(Locale.getDefault());
-        return transactions.stream()
-                .filter(t -> t.getDate().getYear() == year &&
-                        t.getDate().get(wf.weekOfYear()) == week)
-                .collect(Collectors.toList());
-    }
+        int weekOfYear = date.get(wf.weekOfYear());
+        return date.getYear() == year && weekOfYear == week;
 
-    @Override
-    public String getDescription() {
-       return "Vecka " + week;
     }
 }

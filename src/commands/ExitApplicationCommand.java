@@ -4,7 +4,7 @@ public class ExitApplicationCommand extends Command {
 
     public ExitApplicationCommand(){
 
-        super("exit-application", "Exit application");
+        super("AVSLUTA", "Avsluta och stänga ner programmet");
 
     }
 

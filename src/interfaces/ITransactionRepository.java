@@ -9,7 +9,7 @@ public interface ITransactionRepository {
     void save(Transaction transaction);
     void delete(int id);
     void update(Transaction transaction);
-    List<Transaction> getAll();
+    List<Transaction> getAllTransactions();
 
 
 }

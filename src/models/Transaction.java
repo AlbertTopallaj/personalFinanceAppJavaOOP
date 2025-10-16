@@ -2,6 +2,9 @@ package models;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Transaction {
 
@@ -9,14 +12,17 @@ public class Transaction {
     private int ID;
     private int amount;
     private String description;
-    private LocalDate date;
+    private LocalDateTime date;
+    private boolean isIncome;
 
-    public Transaction(int ID, int amount, String description, String date){
+    public Transaction(int ID, int amount, String description, String date, boolean isIncome){
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         this.ID = nextID++;
         this.amount = amount;
         this.description = description;
-        this.date = LocalDate.parse(date);
+        this.date = LocalDateTime.now();
+        this.isIncome = isIncome;
 
     }
 
@@ -38,15 +44,21 @@ public class Transaction {
 
     }
 
-    public LocalDate getDate(){
+    public LocalDateTime getDate(){
 
         return date;
 
     }
 
+    public boolean isIncome() {
+
+        return isIncome;
+
+    }
+
     public String toString(){
 
-        return "ID: " + ID + " " + description + " (" + amount + " kr, " + date + ")";
+        return (isIncome ? "[IN]" : "[OUT]") + " " + description + " - " + amount + " kr (" + date + ")";
 
     }
 

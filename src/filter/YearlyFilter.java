@@ -1,28 +1,26 @@
 package filter;
 
-import filter.ITransactionFilter;
 import models.Transaction;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class YearlyFilter implements ITransactionFilter {
+public class YearlyFilter extends DateFilter {
 
-    private final int year;
+    private int year;
 
-    public YearlyFilter(LocalDate date) {
-        this.year = date.getYear();
+    public YearlyFilter(int year){
+
+        this.year = year;
+
     }
 
     @Override
-    public List<Transaction> filter(List<Transaction> transactions) {
-        return transactions.stream()
-                .filter(t -> t.getDate().getYear() == year)
-                .collect(Collectors.toList());
+    protected boolean matches(LocalDate date){
+
+        return date.getYear() == year;
+
     }
 
-    @Override
-    public String getDescription() {
-        return "Året: " + year;
-    }
 }

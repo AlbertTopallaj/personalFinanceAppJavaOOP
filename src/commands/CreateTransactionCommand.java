@@ -14,7 +14,7 @@ public class CreateTransactionCommand extends Command{
 
     public CreateTransactionCommand(ArrayList<Transaction> transactions){
 
-        super("create-transaction", "Create and save a new transaction");
+        super("SKAPA", "Skapa och spara en ny transaktion");
         this.transactions = transactions;
 
     }
@@ -39,7 +39,9 @@ public class CreateTransactionCommand extends Command{
 
         String formattedDate = date.format(dateTimeFormatter);
 
-        Transaction transaction = new Transaction(ID, amount, description, formattedDate);
+        boolean isIncome = amount > 0;
+
+        Transaction transaction = new Transaction(ID, amount, description, formattedDate, isIncome);
         transactions.add(transaction);
 
         System.out.println("Transaktion sparad: " + transaction);

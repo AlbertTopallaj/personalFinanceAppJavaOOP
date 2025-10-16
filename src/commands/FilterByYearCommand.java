@@ -5,6 +5,7 @@ import models.Transaction;
 import services.TransactionFilterService;
 import services.TransactionService;
 
+
 import java.util.List;
 
 
@@ -12,13 +13,13 @@ public class FilterByYearCommand extends Command {
 
     private final List<Transaction> transactions;
     private final TransactionPrinter printer;
-    private final TransactionService filterService;
+    private final TransactionFilterService filterService;
     private final int year;
 
 
     public FilterByYearCommand(List<Transaction> transactions,
                                TransactionPrinter printer,
-                               TransactionService filterService,
+                               TransactionFilterService filterService,
                                int year) {
         super("filter-by-year", "Filter transactions by year");
         this.transactions = transactions;

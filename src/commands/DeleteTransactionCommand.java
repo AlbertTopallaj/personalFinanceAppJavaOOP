@@ -11,7 +11,7 @@ public class DeleteTransactionCommand extends Command {
 
     public DeleteTransactionCommand(ArrayList<Transaction> transactions){
 
-        super("delete-transaction", "Remove transaction");
+        super("RADERA", "Radera en befintlig transaktion");
         this.transactions = transactions;
 
     }

@@ -6,25 +6,21 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DailyFilter implements ITransactionFilter {
+public class DailyFilter extends DateFilter {
 
-    private LocalDate date;
+    private LocalDate targetDate;
 
-    public DailyFilter(LocalDate date) {
-        this.date = date;
+    public DailyFilter(LocalDate targetDate){
+
+        this.targetDate = targetDate;
+
     }
 
     @Override
-    public List<Transaction> filter(List<Transaction> transactions) {
-        return transactions.stream()
-                .filter(t -> t.getDate().equals(date))
-                .collect(Collectors.toList());
-    }
+    protected boolean matches(LocalDate date){
 
-    @Override
-    public String getDescription(){
-
-        return "Dag: " + date;
+        return date.equals(targetDate);
 
     }
+
 }

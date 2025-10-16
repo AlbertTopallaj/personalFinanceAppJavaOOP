@@ -1,29 +1,19 @@
 package filter;
 
-import filter.ITransactionFilter;
-import models.Transaction;
-import java.time.YearMonth;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
-public class MonthlyFilter implements ITransactionFilter {
 
-    private final YearMonth month;
+public class MonthlyFilter extends DateFilter {
+    private int year;
+    private int month;
 
-    public MonthlyFilter(LocalDate date) {
-        this.month = YearMonth.from(date);
+    public MonthlyFilter(int year, int month) {
+        this.year = year;
+        this.month = month;
     }
 
     @Override
-    public List<Transaction> filter(List<Transaction> transactions) {
-        return transactions.stream()
-                .filter(t -> YearMonth.from(t.getDate()).equals(month))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public String getDescription() {
-        return "Månad: " + month;
+    protected boolean matches(LocalDate date) {
+        return date.getYear() == year && date.getMonthValue() == month;
     }
 }
